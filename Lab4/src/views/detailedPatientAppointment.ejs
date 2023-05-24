@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Detailed Appointment Info</title>
+  </head>
+  <body>
+    <h1>Detailed Appointment Info</h1>
+    <form action="/patientCabinet/appointmentsHistory/viewAppointment/setRate" method="POST">
+      <label for="rate">Rate:</label>
+      <input type="number" name="rate" id="rate" min="0" max="5" />
+      <input type="hidden" name="command" value="setRate" />
+      <input type="hidden" name="appointmentId" value="<%= appointmentId %>" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <% diagnoses.forEach(function(diagnose) { %>
+    <h2>Diagnose: <%= diagnose.disease %></h2>
+    <p><strong>Recommendations:</strong> <%= diagnose.recommendations %></p>
+    <ul>
+      <% diagnose.receipts.forEach(function(receipt) { %>
+      <li><strong>Medicine:</strong> <%= receipt.medicine %>, <strong>Dose:</strong> <%= receipt.dose %></li>
+      <% }); %>
+    </ul>
+    <% }); %>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Clinic Web App</title>
+    <style>
+      body {
+        background-image: url("https://cdn.pixabay.com/photo/2016/06/02/02/33/training-1422192_960_720.jpg");
+        background-size: cover;
+        background-position: center center;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 50px;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+      }
+
+      h1 {
+        font-size: 3rem;
+        margin-bottom: 40px;
+      }
+
+      .banner {
+        background-color: #28a745;
+        color: #fff;
+        padding: 20px;
+        margin-bottom: 40px;
+        font-size: 1.2rem;
+        text-align: center;
+      }
+
+      .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      a {
+        display: inline-block;
+        border-radius: 5px;
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 1.2rem;
+        text-align: center;
+        text-decoration: none;
+        color: #fff;
+      }
+
+      .login-btn {
+        background-color: #007bff;
+      }
+
+      .signup-btn {
+        background-color: #28a745;
+      }
+
+      .login-btn:hover,
+      .signup-btn:hover {
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      <p>Quality Services at Affordable Prices</p>
+    </div>
+    <div class="container">
+      <h1>Welcome to My Clinic Web App</h1>
+      <div class="buttons">
+        <a href="/login" class="login-btn">Login</a>
+        <a href="/signUp" class="signup-btn">Sign Up</a>
+      </div>
+    </div>
+  </body>
+</html>

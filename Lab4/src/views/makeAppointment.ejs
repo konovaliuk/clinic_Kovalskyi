@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Appointment Schedule</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Appointment Schedule</h1>
+    <form
+      id="appointment-form"
+      method="post"
+      action="/patientCabinet/chooseSpecialisation/listDoctors/schedule/chooseTime/makeAppointment"
+    >
+      <input type="hidden" name="command" value="makeAppointment" />
+      <input type="hidden" name="doctorId" value="<%= doctorId %>" />
+      <input type="hidden" name="date" id="date-input" />
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (var hour = 8; hour <= 16; hour++) { %> <% for (var minute = 0; minute < 60; minute += 30) { %> <% var
+          timeString = ('0' + hour).slice(-2) + ':' + ('0' + minute).slice(-2) %> <% var dateTimeString = date + ' ' +
+          timeString + ':00' %> <% var isAvailable = !doctorSchedule.includes(timeString) %> <% if (isAvailable) { %>
+          <tr>
+            <td><a href="#" class="available" data-time="<%= timeString %>"><%= timeString %></a></td>
+          </tr>
+          <% } %> <% } %> <% } %>
+        </tbody>
+      </table>
+    </form>
+    <script>
+      document.querySelectorAll("a.available").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+          event.preventDefault();
+          document.getElementById("date-input").value = "<%= date %>" + " " + this.dataset.time + ":00";
+          document.getElementById("appointment-form").submit();
+        });
+      });
+    </script>
+  </body>
+</html>

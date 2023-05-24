@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Appointments</title>
+    <style>
+      /* Add some styles here to make the list look nice */
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      .doctor-name {
+        font-weight: bold;
+      }
+      .rate {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Appointments</h1>
+    <ul>
+      <% appointments.forEach(function(appointment) { %>
+      <li>
+        <span class="doctor-name"><%= appointment.doctorName %> <%= appointment.doctorSurname %></span><br />
+        <span>Cabinet: <%= appointment.cabinet %></span><br />
+        <span>Date: <%= appointment.date %></span><br />
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

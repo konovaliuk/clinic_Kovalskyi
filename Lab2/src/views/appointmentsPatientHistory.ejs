@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Appointments</title>
+    <style>
+      /* Add some styles here to make the list look nice */
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      .doctor-name {
+        font-weight: bold;
+      }
+      .rate {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Appointments</h1>
+    <ul>
+      <% appointments.forEach(function(appointment) { %>
+      <li>
+        <form id="chooseAppointmentForm" method="POST" action="/cabinet/appointmentsHistory/viewAppointment">
+          <input type="hidden" name="command" value="detailPatientAppointment" />
+          <input type="hidden" name="appointmentId" value="<%= appointment.id %>" />
+          <button
+            type="submit"
+            class="appointment-link"
+            onclick="document.getElementById('chooseAppointmentForm').submit()"
+          >
+            <span class="doctor-name"><%= appointment.doctorName %> <%= appointment.doctorSurname %></span><br />
+            <span>Date: <%= appointment.date %></span><br />
+            <span class="rate">Rate: <%= appointment.rate %></span>
+          </button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>

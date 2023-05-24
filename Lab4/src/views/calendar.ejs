@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calendar</title>
+    <style>
+      .calendar-table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .calendar-table th,
+      .calendar-table td {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .calendar-table th {
+        background-color: lightgray;
+      }
+
+      .calendar-table td.day-off {
+        background-color: red;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calendar</h1>
+    <table class="calendar-table">
+      <thead>
+        <tr>
+          <% for (var i = 0; i < week.length; i++) { %>
+          <th><%= week[i] %></th>
+          <% } %>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (var i = 0; i < calendar.length; i++) { %> <% var day = calendar[i]; %> <% if (i % 7 === 0) { %>
+        <tr>
+          <% } %>
+          <td <% if (day.dayOff) { %>
+            class="day-off"<% } %> data-date="<%= day.date.toISOString() %>"> <%= day.date.getDate() %>
+          </td>
+          <% if (i % 7 === 6) { %>
+        </tr>
+        <% } %> <% } %>
+      </tbody>
+    </table>
+    <form id="calendar-form" method="POST" style="display: none" action="<%=path%>/chooseTime">
+      <input type="hidden" name="command" value="redirectMakeAppointment" />
+      <input type="hidden" name="date" />
+      <input type="hidden" name="doctorId" value="<%=doctorId%>" />
+    </form>
+    <script>
+      var calendarTable = document.querySelector(".calendar-table");
+      var calendarForm = document.querySelector("#calendar-form");
+      calendarTable.addEventListener("click", function (event) {
+        if (event.target.tagName === "TD" && !event.target.classList.contains("day-off")) {
+          var date = event.target.getAttribute("data-date");
+          calendarForm.querySelector('[name="date"]').value = date;
+          calendarForm.submit();
+        }
+      });
+    </script>
+  </body>
+</html>

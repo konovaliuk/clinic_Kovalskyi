@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Doctors</title>
+    <style>
+      /* Add some styles here to make the list look nice */
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      li {
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+      .doctor-name {
+        font-weight: bold;
+      }
+      .rate {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Doctors</h1>
+    <ul>
+      <% doctors.forEach(function(doctor) { %>
+      <li>
+        <form id="chooseDoctorForm" method="POST" action="/adminCabinet/chooseSpecialisation/listDoctors/isWork">
+          <input type="hidden" name="command" value="redirectSchedule" />
+          <input type="hidden" name="doctorId" value="<%= doctor.id %>" />
+          <button type="submit" class="doctor-link" onclick="document.getElementById('chooseDoctorForm').submit()">
+            <span class="doctor-name"><%= doctor.name %> <%= doctor.surname %></span><br />
+            <span>Rate: <%= doctor.rate?.toFixed(1) %></span><br />
+            <span class="doctor-cabinet">Cabinet: <%= doctor.cabinet %></span>
+          </button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+  </body>
+</html>
